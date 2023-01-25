@@ -49,14 +49,14 @@ Route::get('/task/{param}', function ($param) use ($taskList) {
     return $taskList[$param];
 });
 
-Route::post('/task', function () use ($taskList) {
+Route::post('/task/{key}', function ($key) use ($taskList) {
     // return request()->all();
     $taskList[request()->label] = request()->task;
     return $taskList;
 });
 
-Route::patch('/task', function () use ($taskList) {
-    $taskList[request()->label] = request()->task;
+Route::patch('/task/{key}', function ($key) use ($taskList) {
+    $taskList[request()->key] = request()->task;
     return $taskList;
 });
 
