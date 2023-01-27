@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TaskController;
+use Illuminate\Console\View\Components\Task;
 use Illuminate\Support\Facades\Route;
 use function PHPUnit\Framework\assertClassHasStaticAttribute;
 
@@ -14,53 +17,38 @@ use function PHPUnit\Framework\assertClassHasStaticAttribute;
 |
 */
 
-$taskList = [
-    'first' => 'Data 1',
-    'second' => 'Data 2',
-    'third' => 'Data 3'
-];
+Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/tasks', [TaskController::class, 'index']);
 
-Route::get('test', function () {
-    return view('test');
-});
+// Route::get('/task', function () use ($taskList) {
+//     if (request()->search) {
+//         return $taskList[request()->search];
+//     } else {
+//         return $taskList;
+//     }
+// });
 
-Route::get('/hello', function () {
-    // return response() -> json([
-    // ]);
-    $dataArray = ['message' => "Hi!",
-    'message2' => "anjing"
-];
-    return ddd($dataArray);
-});
+Route::get('/tasks/{id}', [TaskController::class, 'show']); //show
 
-Route::get('/task', function () use ($taskList) {
-    if (request()->search) {
-        return $taskList[request()->search];
-    } else {
-        return $taskList;
-    }
-});
+// Route::post('/task/{key}', function ($key) use ($taskList) {
+//     // return request()->all();
+//     $taskList[request()->label] = request()->task;
+//     return $taskList;
+// });
 
-Route::get('/task/{param}', function ($param) use ($taskList) {
-    return $taskList[$param];
-});
+Route::post('/tasks', [TaskController::class, 'store']); //store
 
-Route::post('/task/{key}', function ($key) use ($taskList) {
-    // return request()->all();
-    $taskList[request()->label] = request()->task;
-    return $taskList;
-});
+// Route::patch('/task/{key}', function ($key) use ($taskList) {
+//     $taskList[request()->key] = request()->task;
+//     return $taskList;
+// });
 
-Route::patch('/task/{key}', function ($key) use ($taskList) {
-    $taskList[request()->key] = request()->task;
-    return $taskList;
-});
+Route::patch('/tasks/{id}', [TaskController::class, 'update']); //update
 
-Route::delete('/task/{key}', function ($key) use ($taskList) {
-    unset($taskList[$key]);
-    return $taskList;
-});
+// Route::delete('/task/{key}', function ($key) use ($taskList) {
+//     unset($taskList[$key]);
+//     return $taskList;
+// });
+
+Route::delete('/tasks/{id}', [TaskController::class, 'delete']); //delete
