@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Task;
 
 use function GuzzleHttp\Promise\task;
 
@@ -16,28 +17,23 @@ class TaskController extends Controller
         // }
         // return $this->taskList;
         if ($request -> search){
-            $task = DB::table('tasks')
-            ->where('task', 'LIKE', "%$request->search%")
-            ->get();
-
+            $task = Task::where('task', 'LIKE', "%$request->search%")->get();
             return $task;
         }
-        $task = DB::table('tasks')->get();
+
+        $task = Task::all();
         return $task;
     }
 
     public function show($id) {
-        $task = DB::table('tasks')
-        ->where('id', $id)
-        ->get();
-
+        $task = Task::find($id);
         return $task;
     }
 
     public function store(Request $request){
         // $this->taskList[$request->key] = $request->task;
         // return $this->taskList;
-        DB::table('tasks')->insert([
+        Task::create([
             'task' => $request->task,
             'user' => $request->user
         ]);
@@ -47,7 +43,8 @@ class TaskController extends Controller
     public function update(Request $request, $id){
         // $this->taskList[$key] = $request->task;
         // return $this->taskList;
-        DB::table('tasks')->where('id', $id)->update([
+        $task = Task::find($id);
+        $task->update([
             'task' => $request->task,
             'user' => $request->user
         ]);
@@ -57,7 +54,7 @@ class TaskController extends Controller
     public function delete($id){
         // unset($this->taskList[$key]);
         // return $this->taskList;
-        DB::table('tasks')->where('id', $id)->delete();
+        Task::where('id', $id)->delete();
         return 'Success';
     }
 
