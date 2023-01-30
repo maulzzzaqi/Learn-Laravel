@@ -37,12 +37,16 @@ Route::get('/tasks/{id}', [TaskController::class, 'show']); //show
 //     return $taskList;
 // });
 
+Route::get('/create', [TaskController::class, 'create']);
+
 Route::post('/tasks', [TaskController::class, 'store']); //store
 
 // Route::patch('/task/{key}', function ($key) use ($taskList) {
 //     $taskList[request()->key] = request()->task;
 //     return $taskList;
 // });
+
+Route::get('/tasks/{id}/edit', [TaskController::class, 'edit']);
 
 Route::patch('/tasks/{id}', [TaskController::class, 'update']); //update
 
