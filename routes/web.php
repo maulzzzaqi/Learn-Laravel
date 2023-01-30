@@ -21,6 +21,8 @@ Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/tasks', [TaskController::class, 'index']);
 
+Route::get('tasks/create', [TaskController::class, 'create']);
+
 // Route::get('/task', function () use ($taskList) {
 //     if (request()->search) {
 //         return $taskList[request()->search];
@@ -36,8 +38,6 @@ Route::get('/tasks/{id}', [TaskController::class, 'show']); //show
 //     $taskList[request()->label] = request()->task;
 //     return $taskList;
 // });
-
-Route::get('/create', [TaskController::class, 'create']);
 
 Route::post('/tasks', [TaskController::class, 'store']); //store
 
