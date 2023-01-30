@@ -22,7 +22,9 @@ class TaskController extends Controller
         }
 
         $task = Task::all();
-        return $task;
+        return view('task.index', [
+            'data' => $task
+        ]);
     }
 
     public function show($id) {
