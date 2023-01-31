@@ -15,7 +15,11 @@
             <div class="col-10 mb-1 small">{{$item->user}}</div>
             <div class="group-action">
                 <a href="{{ url("/tasks/$item->id/edit") }}" class="badge bg-info text-white">edit</a>
-                <a href="#" class="badge bg-danger text-white">delete</a>
+                <form action="{{ url("/tasks/$item->id") }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="badge bg-danger text-white">delete</button>
+                </form>
             </div>
         </div>
     </div>

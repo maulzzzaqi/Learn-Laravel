@@ -66,7 +66,7 @@ class TaskController extends Controller
         // unset($this->taskList[$key]);
         // return $this->taskList;
         Task::where('id', $id)->delete();
-        return 'Success';
+        return redirect('/tasks');
     }
 
 }
