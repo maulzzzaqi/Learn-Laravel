@@ -24,8 +24,15 @@ class TaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'tasks' => ['required'],
+            'task' => ['required'],
             'user' => ['required']
+        ];
+    }
+
+    public function messages(){
+        return [
+            'task.required' => "Task cannot be blank!",
+            'user.required' => "User cannot be blank!"
         ];
     }
 }
