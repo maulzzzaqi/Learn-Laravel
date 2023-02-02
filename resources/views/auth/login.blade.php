@@ -12,7 +12,7 @@
     @endif
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('register') }}" method="POST">
+            <form action="{{ route('login') }}" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label for="" class="form-label">Name</label>
@@ -43,9 +43,9 @@
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Confirm Password</label>
-                    <input name="password_confirmation" type="password" class="form-control">
+                    <input name="password_confimartion" type="password" class="form-control">
                 </div>
-                <button type="submit" class="btn btn-primary">Register</button>
+                <button type="submit" class="btn btn-primary">Login</button>
             </form>
         </div>
     </div>
