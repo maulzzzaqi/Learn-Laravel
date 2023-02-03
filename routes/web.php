@@ -20,7 +20,7 @@ use function PHPUnit\Framework\assertClassHasStaticAttribute;
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/tasks', [TaskController::class, 'index'])->middleware('is_admin');
+Route::get('/tasks', [TaskController::class, 'index']);
 
 Route::get('tasks/create', [TaskController::class, 'create']);
 

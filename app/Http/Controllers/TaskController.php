@@ -12,6 +12,11 @@ use function GuzzleHttp\Promise\task;
 class TaskController extends Controller
 
 {
+
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     public function index(Request $request) {
         // if ($request->search) {
         //     return $this->taskList[request()->search()]; 

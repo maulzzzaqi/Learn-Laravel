@@ -7,7 +7,7 @@
         @else
         <span class="fs-5 fw-semibold">Welcome to Task Management</span>    
         @endif
-        <span class="btn btn-sm btn-primary">add</span>
+        <span class="btn btn-sm btn-primary">Add</span>
     </div>
 </div>
 @endsection
