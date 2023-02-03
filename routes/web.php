@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Console\View\Components\Task;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
 use function PHPUnit\Framework\assertClassHasStaticAttribute;
 
@@ -19,7 +20,7 @@ use function PHPUnit\Framework\assertClassHasStaticAttribute;
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/tasks', [TaskController::class, 'index']);
+Route::get('/tasks', [TaskController::class, 'index'])->middleware('is_admin');
 
 Route::get('tasks/create', [TaskController::class, 'create']);
 
