@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
 
+use function Ramsey\Uuid\v1;
+
 class FortifyServiceProvider extends ServiceProvider
 {
     /**
@@ -48,6 +50,14 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::loginView(function() {
             return view('auth.login');
+        });
+
+        Fortify::requestPasswordResetLinkView(function () {
+            return view('auth.forgot-password');
+        });
+
+        Fortify::resetPasswordView(function($request) {
+            return view('auth.reset-password', ['request' => $request]);
         });
     }
 }

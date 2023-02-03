@@ -12,20 +12,12 @@
     @endif
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('login') }}" method="POST">
+            <form action="{{ route('password.update') }}" method="POST">
                 @csrf
-                <div class="mb-3">
-                    <label for="" class="form-label">Name</label>
-                    <input name="name" type="text" class="form-control" value="{{ old('name') }}">
-                    @error('name')
-                    <span class="text-danger">
-                        {{ $message }}
-                    </span>
-                    @enderror
-                </div>
+                <input type="hidden" name="token" value="{{ $request->route('token') }}">
                 <div class="mb-3">
                     <label for="" class="form-label">Email</label>
-                    <input name="email" type="email" class="form-control" value="{{ old('email') }}">
+                    <input name="email" type="email" class="form-control" value="{{ old('email', $request->email) }}">
                     @error('email')
                     <span class="text-danger">
                         {{ $message }}
@@ -41,8 +33,11 @@
                     </span>
                     @enderror
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
-                <a href="{{ route('password.request') }}" type="button" class="btn btn-danger">Reset Password</a>
+                <div class="mb-3">
+                    <label for="" class="form-label">Confirm Password</label>
+                    <input name="password_confirmation" type="password" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
             </form>
         </div>
     </div>
